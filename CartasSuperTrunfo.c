@@ -1,8 +1,8 @@
 #include <stdio.h>
 
 // Desafio Super Trunfo - Países
-// Tema 2 - Nível mestre
-// Tema 3 - Nível aventureiro
+// Tema 2 - Nível Mestre
+// Tema 3 - Nível Mestre
 
 int main() {
     // Área para definição das variáveis para armazenar as propriedades das cidades
@@ -12,14 +12,14 @@ int main() {
     unsigned int populacao01;
     double pib01;
     int num_ponto_turistico01, codigo01;
-    float area01, densidade01, pib_per_capita01;
+    float area01, densidade01, pib_per_capita01, super_poder01;
 
     // Segunda carta
     char estado02[20], nome_cidade02[50];
     unsigned int populacao02;
     double pib02;
     int num_ponto_turistico02, codigo02;
-    float area02, densidade02, pib_per_capita02;
+    float area02, densidade02, pib_per_capita02, super_poder02;
 
     // MENU
     int opcao;
@@ -79,6 +79,10 @@ int main() {
     pib_per_capita01 = pib01 / populacao01;
     pib_per_capita02 = pib02 / populacao02;
 
+	//Calculo super poder
+	super_poder01 = populacao01 + area01 + pib01 + num_ponto_turistico01 + pib_per_capita01 + densidade01;
+	super_poder02 = populacao02 + area02 + pib02 + num_ponto_turistico02 + pib_per_capita02 + densidade02;
+
     // Área para exibição dos dados da cidade
 
     printf("\n==== PRIMEIRA CARTA ====\n");
@@ -110,6 +114,7 @@ int main() {
     printf("3 - PIB\n");
     printf("4 - Pontos Turisticos\n");
     printf("5 - Densidade Demografica\n");
+	printf("6 - Super Poder\n");
     printf("Escolha o atributo para comparar: ");
     scanf("%d", &opcao);
 
@@ -119,8 +124,8 @@ int main() {
     case 1:
 
     	printf("\nComparacao por Populacao\n");
-    	printf("%s: %d\n", nome_cidade01, populacao01);
-    	printf("%s: %d\n", nome_cidade02, populacao02);
+    	printf("%s: %u\n", nome_cidade01, populacao01);
+    	printf("%s: %u\n", nome_cidade02, populacao02);
 
     	if(populacao01 > populacao02)
     	{
@@ -215,6 +220,27 @@ int main() {
     	}
 
     	break;
+	case 6:
+
+		printf("\nComparacao por Super Poder\n");
+
+		printf("%s: %.2f\n", nome_cidade01, super_poder01);
+		printf("%s: %.2f\n", nome_cidade02, super_poder02);
+
+		if(super_poder01 > super_poder02)
+		{
+    	printf("Resultado: Carta 1 venceu!\n");
+		}
+		else if(super_poder02 > super_poder01)
+		{
+    	printf("Resultado: Carta 2 venceu!\n");
+		}
+		else
+		{
+    	printf("Empate!\n");
+		}
+
+		break;
     default:
     	printf("Opcao invalida!\n");
     }
